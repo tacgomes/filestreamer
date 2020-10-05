@@ -15,8 +15,6 @@ FileReceiver::FileReceiver(unsigned port)
 
 FileReceiver::~FileReceiver()
 {
-    delete m_socket;
-    m_socket = nullptr;
 }
 
 void FileReceiver::start()

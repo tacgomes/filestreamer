@@ -25,7 +25,7 @@ private:
     enum class Action {Start, Stop, StopNow};
     std::atomic<Action> m_action {Action::Stop};
 
-    TcpServerSocket* m_socket;
+    std::unique_ptr<TcpServerSocket> m_socket;
 
     constexpr static auto PollingTime = std::chrono::milliseconds(200);
     constexpr static uint32_t MaxBytesNotAcknowledged = 1 * 1024 * 1024;
