@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     unsigned short port = 0;
 
     for (int i = 1; i < argc; ++i) {
-        std::string arg = argv[i];
+        std::string arg (argv[i]);
         if (arg == "-h" || arg == "--help") {
             showUsage(argv[0]);
             return EXIT_SUCCESS;
