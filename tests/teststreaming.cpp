@@ -31,13 +31,14 @@ uint32_t calculateChecksum(std::string &filename)
 
     unsigned shift = 0;
     uint32_t checksum = 0;
-    for (uint32_t c = infile.get(); infile; c = infile.get()) {
+    do {
+        uint32_t c = infile.get();
         checksum += (c << shift);
         shift += 8;
         if (shift == 32) {
             shift = 0;
         }
-    }
+    } while (infile);
 
     return checksum;
 }
