@@ -20,8 +20,9 @@ void createTestFile(const std::string &filename, size_t numBytes)
     std::mt19937 gen{ std::random_device()() };
     std::uniform_int_distribution<> dis(0, 255);
 
-    std::generate_n(std::ostream_iterator<char>(
-        infile, ""), numBytes, [&]{ return dis(gen); });
+    std::generate_n(
+        std::ostream_iterator<char>(infile, ""),
+        numBytes, [&]{ return dis(gen); });
 }
 
 uint32_t calculateChecksum(std::string &filename)
@@ -30,8 +31,8 @@ uint32_t calculateChecksum(std::string &filename)
 
     unsigned shift = 0;
     uint32_t checksum = 0;
-    for (uint32_t ch = infile.get(); infile; ch = infile.get()) {
-        checksum += (ch << shift);
+    for (uint32_t c = infile.get(); infile; c = infile.get()) {
+        checksum += (c << shift);
         shift += 8;
         if (shift == 32) {
             shift = 0;
