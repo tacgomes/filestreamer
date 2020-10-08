@@ -11,7 +11,7 @@ class FileUploader
 {
 public:
     FileUploader(
-        const std::string &host, unsigned short port, unsigned limitRate = 0);
+        const std::string &host, unsigned short port, unsigned limitRate = 0u);
     FileUploader(const FileUploader &) = delete;
     FileUploader &operator=(const FileUploader &) = delete;
 
@@ -19,7 +19,7 @@ public:
 
 private:
     bool sendHeader(std::unique_ptr<TcpClientSocket> &socket,
-        const std::string &filename, uint32_t filesize, uint32_t offset = 0);
+        const std::string &filename, uint32_t filesize, uint32_t offset = 0u);
 
     void reconnect(std::unique_ptr<TcpClientSocket> &socket,
         const std::string &filename, uint32_t filesize, uint32_t offset);
@@ -28,6 +28,6 @@ private:
     unsigned short m_port;
     unsigned m_limitRate;
 
-    constexpr static unsigned BufferSize = 1460;
+    constexpr static unsigned BufferSize = 1460u;
     constexpr static auto ReconnectionWaitingTime = std::chrono::seconds(1);
 };

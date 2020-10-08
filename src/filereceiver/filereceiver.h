@@ -28,5 +28,5 @@ private:
     std::unique_ptr<TcpServerSocket> m_socket;
 
     constexpr static auto PollingTime = std::chrono::milliseconds(200);
-    constexpr static uint32_t MaxBytesNotAcknowledged = 1 * 1024 * 1024;
+    constexpr static uint32_t MaxBytesNotAcknowledged = 1u * 1024 * 1024;
 };
