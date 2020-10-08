@@ -8,7 +8,7 @@ To build the project and run the unit tests, follow these instructions:
 $ mkdir build
 $ cd build
 $ make
-$ make tests
+$ make test
 ```
 
 # Streaming a file
