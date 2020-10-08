@@ -34,10 +34,7 @@ uint32_t calculateChecksum(std::string &filename)
     do {
         uint32_t c = infile.get();
         checksum += (c << shift);
-        shift += 8;
-        if (shift == 32) {
-            shift = 0;
-        }
+        shift = (shift + 8) % 32;
     } while (infile);
 
     return checksum;
