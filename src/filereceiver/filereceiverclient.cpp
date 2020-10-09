@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
             return EXIT_SUCCESS;
         } else {
             auto val = std::stoul(argv[1]);
-            if (val == 0 || val > 65535) {
+            if (val > 65535) {
                 std::cerr << "Error: port must be between 1 and 65535\n";
                 return EXIT_FAILURE;
             }
