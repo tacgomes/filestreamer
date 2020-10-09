@@ -32,8 +32,8 @@ include_directories(src/lib)
 
 add_compile_options(-Wall -Wextra -pedantic -Werror)
 
-file(GLOB FILE_RECEIVER_SOURCES "src/lib/*.cpp")
-add_library(filestreamer STATIC ${FILE_RECEIVER_SOURCES})
+file(GLOB FILE_STREAMER_SOURCES "src/lib/*.cpp")
+add_library(filestreamer STATIC ${FILE_STREAMER_SOURCES})
 
 file(GLOB FILE_UPLOADER_SOURCES "src/fileuploader/*.cpp")
 add_executable(fileuploader ${FILE_UPLOADER_SOURCES})
