@@ -67,7 +67,7 @@ void FileUploader::upload(const std::string &filename)
             if (socket->read(newBytesAcknowledged)) {
                 bytesAcknowledged = newBytesAcknowledged;
             } else {
-                std::cerr << "WARNING: failed to read acknowledgedment\n";
+                std::cerr << "WARNING: failed to read acknowledgement\n";
             }
         }
 
@@ -77,7 +77,7 @@ void FileUploader::upload(const std::string &filename)
                 if (socket->read(newBytesAcknowledged)) {
                     bytesAcknowledged = newBytesAcknowledged;
                 } else {
-                    std::cerr << "WARNING: failed to read acknowledgedment\n";
+                    std::cerr << "WARNING: failed to read acknowledgement\n";
                     infile.seekg(bytesAcknowledged);
                     reconnect(socket, filename, filesize, bytesAcknowledged);
                 }

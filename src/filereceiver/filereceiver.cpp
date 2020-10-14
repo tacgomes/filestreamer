@@ -115,7 +115,7 @@ void FileReceiver::process(std::unique_ptr<TcpSocket> socket) const
                 || (offset + bytesReceived) == filesize) {
             outfile.flush();
             if (!socket->write(bytesReceived + offset)) {
-                std::cerr << "WARNING: failed to send acknowledgedment\n";
+                std::cerr << "WARNING: failed to send acknowledgement\n";
             }
             bytesNotAcknowledged = 0;
         }
