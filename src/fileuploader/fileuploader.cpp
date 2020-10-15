@@ -89,7 +89,7 @@ void FileUploader::upload(const std::string &filename)
 
     std::cout << "Elapsed time: " << seconds << " seconds\n";
 
-    std::cout << "Bytes transfered: " << bytesSent << " bytes\n";
+    std::cout << "Bytes transferred: " << bytesSent << " bytes\n";
 
     std::cout << "Average upload speed: "
               << std::lround(bytesSent / seconds) << " bytes/sec\n";
