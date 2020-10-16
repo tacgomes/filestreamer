@@ -28,8 +28,8 @@ cd build
 ```
 
 Replace `testfile10Mb` with the file that you wish to upload. The file received
-will have `.received` suffix appended to its file name. The `--limit-rate`
-parameter is optional and restricts the uploading speed to given number of bytes
-per second.
+will have the `.received` suffix appended to its filename. The `--limit-rate`
+parameter is optional and restricts the uploading speed to given number of
+bytes per second.
 
 [CMake]: https://cmake.org/
