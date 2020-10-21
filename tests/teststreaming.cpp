@@ -61,10 +61,10 @@ TEST(StreamingTests, TestStreaming)
     receiver.stop();
     receiverThread.join();
 
-    auto checkSumOriginal = calculateChecksum(filename);
+    auto checksumOriginal = calculateChecksum(filename);
     auto receivedFilename = filename + ".received";
-    auto checkSumCopied = calculateChecksum(receivedFilename);
-    ASSERT_EQ(checkSumOriginal, checkSumCopied);
+    auto checksumCopied = calculateChecksum(receivedFilename);
+    ASSERT_EQ(checksumOriginal, checksumCopied);
 
     std::remove(filename.c_str());
 }
@@ -90,10 +90,10 @@ TEST(StreamingTests, RestrictedUploadSpeed)
     receiver.stop();
     receiverThread.join();
 
-    auto checkSumOriginal = calculateChecksum(filename);
+    auto checksumOriginal = calculateChecksum(filename);
     auto receivedFilename = filename + ".received";
-    auto checkSumCopied = calculateChecksum(receivedFilename);
-    ASSERT_EQ(checkSumOriginal, checkSumCopied);
+    auto checksumCopied = calculateChecksum(receivedFilename);
+    ASSERT_EQ(checksumOriginal, checksumCopied);
 
     std::remove(filename.c_str());
 }
@@ -128,10 +128,10 @@ TEST(StreamingTests, ResumeUploading)
     receiver.stop();
     receiverThread.join();
 
-    auto checkSumOriginal = calculateChecksum(filename);
+    auto checksumOriginal = calculateChecksum(filename);
     auto receivedFilename = filename + ".received";
-    auto checkSumCopied = calculateChecksum(receivedFilename);
-    ASSERT_EQ(checkSumOriginal, checkSumCopied);
+    auto checksumCopied = calculateChecksum(receivedFilename);
+    ASSERT_EQ(checksumOriginal, checksumCopied);
 
     std::remove(filename.c_str());
 }
