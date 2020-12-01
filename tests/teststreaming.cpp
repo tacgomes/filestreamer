@@ -47,38 +47,42 @@ constexpr long operator""_Mb( unsigned long long n)
 
 TEST(StreamingTests, TestStreaming)
 {
-    std::string filename("testfile10Mb");
-    createTestFile(filename, 10_Mb);
+    std::string srcFilename("testfile10Mb");
+    std::string dstFilename(srcFilename + ".received");
+
+    createTestFile(srcFilename, 10_Mb);
 
     FileReceiver receiver(9090);
     FileUploader uploader("127.0.0.1", 9090);
 
     std::thread receiverThread(&FileReceiver::start, &receiver);
-    std::thread uploaderThread(&FileUploader::upload, &uploader, filename);
+    std::thread uploaderThread(&FileUploader::upload, &uploader, srcFilename);
 
     uploaderThread.join();
 
     receiver.stop();
     receiverThread.join();
 
-    auto checksumOriginal = calculateChecksum(filename);
-    auto receivedFilename = filename + ".received";
-    auto checksumCopied = calculateChecksum(receivedFilename);
+    auto checksumOriginal = calculateChecksum(srcFilename);
+    auto checksumCopied = calculateChecksum(dstFilename);
     ASSERT_EQ(checksumOriginal, checksumCopied);
 
-    std::remove(filename.c_str());
+    std::remove(srcFilename.c_str());
+    std::remove(dstFilename.c_str());
 }
 
 TEST(StreamingTests, RestrictedUploadSpeed)
 {
-    std::string filename("testfile10Mb");
-    createTestFile(filename, 10_Mb);
+    std::string srcFilename("testfile10Mb");
+    std::string dstFilename(srcFilename + ".received");
+
+    createTestFile(srcFilename, 10_Mb);
 
     FileReceiver receiver(9090);
     FileUploader uploader("127.0.0.1", 9090, 1_Mb);
 
     std::thread receiverThread(&FileReceiver::start, &receiver);
-    std::thread uploaderThread(&FileUploader::upload, &uploader, filename);
+    std::thread uploaderThread(&FileUploader::upload, &uploader, srcFilename);
 
     // The transfer should take 10 seconds to complete.
     // Allow a margin of error of 500 milliseconds.
@@ -90,21 +94,24 @@ TEST(StreamingTests, RestrictedUploadSpeed)
     receiver.stop();
     receiverThread.join();
 
-    auto checksumOriginal = calculateChecksum(filename);
-    auto receivedFilename = filename + ".received";
-    auto checksumCopied = calculateChecksum(receivedFilename);
+    auto checksumOriginal = calculateChecksum(srcFilename);
+    auto checksumCopied = calculateChecksum(dstFilename);
     ASSERT_EQ(checksumOriginal, checksumCopied);
 
-    std::remove(filename.c_str());
+    std::remove(srcFilename.c_str());
+    std::remove(dstFilename.c_str());
 }
 
 TEST(StreamingTests, ResumeUploading)
 {
-    FileReceiver receiver(9090);
-    FileUploader uploader("127.0.0.1", 9090, 1_Mb);
+    std::string srcFilename("testfile10Mb");
+    std::string dstFilename(srcFilename + ".received");
 
     std::string filename("testfile10Mb");
     createTestFile(filename, 10_Mb);
+
+    FileReceiver receiver(9090);
+    FileUploader uploader("127.0.0.1", 9090, 1_Mb);
 
     std::thread receiverThread(&FileReceiver::start, &receiver);
 
@@ -128,12 +135,12 @@ TEST(StreamingTests, ResumeUploading)
     receiver.stop();
     receiverThread.join();
 
-    auto checksumOriginal = calculateChecksum(filename);
-    auto receivedFilename = filename + ".received";
-    auto checksumCopied = calculateChecksum(receivedFilename);
+    auto checksumOriginal = calculateChecksum(srcFilename);
+    auto checksumCopied = calculateChecksum(dstFilename);
     ASSERT_EQ(checksumOriginal, checksumCopied);
 
-    std::remove(filename.c_str());
+    std::remove(srcFilename.c_str());
+    std::remove(dstFilename.c_str());
 }
 
 int main(int argc, char *argv[])
