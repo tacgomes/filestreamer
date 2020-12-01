@@ -42,7 +42,7 @@ void TcpServerSocket::bind(unsigned short port) const
     std::memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_addr.s_addr = INADDR_ANY;
-    addr.sin_port = ::htons(port);
+    addr.sin_port = htons(port);
 
     if (::bind(m_socketfd, reinterpret_cast<sockaddr *>(&addr),
             sizeof(addr)) < 0) {
